@@ -82,3 +82,41 @@ POOphonia processes commands provided via a text file or direct input. Key comma
 
 - **ADD**:  
   Adds a new music item. For example:
+
+ADD song,1,Imagine,1971,John Lennon,Rock,183
+
+- **REMOVE**:  
+Removes a music item by its unique ID.
+
+REMOVE 2
+
+- **SEARCH**:  
+Searches for an item either by its ID or by title and artist.
+
+SEARCH 1
+SEARCH Bohemian Rhapsody by Queen
+
+- **PLAY / PAUSE / STOP**:  
+Controls the playback of music items.
+
+PLAY 1
+PAUSE
+STOP
+
+- **LIST**:  
+Displays all music items currently in the library.
+- **CLEAR**:  
+Empties the entire music library.
+
+Each command generates clear output messages, providing immediate feedback on the operation's success or failure.
+
+## Validation and Error Handling
+
+POOphonia performs thorough validation to ensure the integrity of the music library:
+- **IDs**: Must be positive and unique.
+- **Release Years**: Must be within a sensible range.
+- **Duration and Track Count**: Each item type has specific limits (e.g., song duration, number of tracks, podcast episode number).
+
+The system returns informative messages for errors, such as invalid inputs or operations on non-existent items, making troubleshooting straightforward.
+
+Enjoy managing your digital music library with POOphonia!
