@@ -1,5 +1,7 @@
 package models;
 
+import ui.Message;
+
 public abstract class MusicItem {
   
   private int id;
@@ -17,44 +19,80 @@ public abstract class MusicItem {
     this.id = id;
     this.title = title;
     this.releaseYear = releaseYear;
-    this.isPlaying = isPlaying;
   }
 
   public int getId(){
     return this.id;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   public String getTitle(){
     return this.title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public int getReleaseYear(){
     return this.releaseYear;
   }
 
+  public void setReleaseYear(int releaseYear) {
+    this.releaseYear = releaseYear;
+  }
+
   public boolean getIsPlaying(){
     return this.isPlaying;
   }
 
-  public void setIsPlaying(boolean newStatus){
-    this.isPlaying = newStatus;
+  public void setIsPlaying(boolean playing) {
+    isPlaying = playing;
   }
 
   public boolean getIsPaused(){
     return this.isPaused;
   }
 
-  public void setIsPaused(boolean newStatus){
-    this.isPaused = newStatus;
+  public void setIsPaused(boolean paused) {
+    isPaused = paused;
   }
 
-  public abstract play();
 
-  public abstract pause();
+  public void play(){
 
-  public abstract stop();
+    this.setIsPlaying(true);
+    String message = String.format("Playing Music Item of %d %s.",getReleaseYear(),getTitle());
+    Message.send(message);
+  }
 
-  public abstract toString();
+  public void pause(){
+    this.setIsPaused(true);
+    String message = String.format("Pausing Music Item of %d %s.",getReleaseYear(),getTitle());
+
+    Message.send(message);
+  }
+  public void stop(){
+    this.setIsPlaying(false);
+    if (this.getIsPaused()){
+      this.setIsPaused(false);
+    }
+
+    String message = String.format("Stopping Music Item of %d %s.",getReleaseYear(),getTitle());
+
+    Message.send(message);
+
+  }
+
+  public void toString(){};
+
+  abstract String getInfo() {
+        return null;
+    }
+  abstract String toCSV();
 
 
   

@@ -1,5 +1,7 @@
 package models;
 
+import ui.Message;
+
 public class Album extends MusicItem {
 
   private String artist;
@@ -27,30 +29,48 @@ public class Album extends MusicItem {
     return this.label;
   }
 
+  @Override
   public void play(){
 
-    this.isPlaying = true;                                                    String message = String.format("Playing Song of %s %s by %s",""+ this.releaseYear,this.title,this.artist);
+    this.setIsPlaying(true);
+    String message = String.format("Playing Album of %d %s by %s",getReleaseYear(),getTitle(),getArtist());
     Message.send(message);
   }
 
-  public void stop(){
-    this.isPlaying = false;
-    if (this.isPaused == true){
-      this.isPaused = false;
-    }
-
-    String message = String.format("Stopping Album of %s %s by %s",""+ this.releaseYear,this.title,this.artist);
+  @Override
+  public void pause(){
+    this.setIsPaused(true);
+    String message = String.format("Pausing Album of %d %s by %s",getReleaseYear(),getTitle(),getArtist());
 
     Message.send(message);
+  }
+  @Override
+  public void stop(){
+  this.setIsPlaying(false);
+  if (this.getIsPaused()){
+    this.setIsPaused(false);
+  }
+
+  String message = String.format("Stopping Album of %d %s by %s",getReleaseYear(),getTitle(),getArtist());
+
+  Message.send(message);
     
   }
 
-  public void pause(){
-    this.isPaused = true;
-    String message = String.format("Pausing Album of %s %s by %s",""+ this.releaseYear,this.title,this.artist);
-
-    Message.send(message);
+  public void toString(){
+    System.out.printf("Album [ID=%d, Title=%s, Release Year=%d, Artist=%s, Number of Tracks=%d, Label=%s]",getId(),getTitle(),getReleaseYear(),getArtist(),getNumberOfTracks(),getLabel());
   }
-  
+
+  @Override
+  public String getInfo() {
+    return null;
+  }
+
+  @Override
+  public String toCSV() {
+    return String.format("%d,%s,%d,%s,%d,%s",getId(),getTitle(),getReleaseYear(),getArtist(),getNumberOfTracks(),getLabel());
+  }
+
+
 
 }
