@@ -37,10 +37,6 @@ public class Album extends MusicItem {
     return this.label;
   }
 
-  public String getCreator(){
-    return getArtist();
-  }
-
   @Override
   public void play(){
 
