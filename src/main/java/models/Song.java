@@ -8,9 +8,9 @@ public class Song extends MusicItem {
 
   private int duration;
 
-  public Song(int id,String title,int releaseYear,boolean isPlaying,String artist, String genre, int duration){
+  public Song(int id,String title,int releaseYear,String artist, String genre, int duration){
     
-    super(id,title,releaseYear,isPlaying);
+    super(id,title,releaseYear);
     this.artist = artist;
     this.genre = genre;
     this.duration = duration;
@@ -30,11 +30,34 @@ public class Song extends MusicItem {
 
   public void play(){
     
-    String message = "Song " 
+    this.isPlaying = true;
+
+    String message = String.format("Playing Song of %s %s by %s",""+ this.releaseYear,this.title,this.artist);
+
+    Message.send(message);
   }
 
   public void stop(){
-    String message = 
+
+    this.isPlaying = false;
+
+    if (this.isPaused == true){
+
+      this.isPaused = false; // maybe a validation will be needed
+    }
+
+    String message = String.format("Stopping Song of %s %s by %s",""+ this.releaseYear,this.title,this.artist);
+
+    Message.send(message);
+  }
+
+  public void pause(){
+    
+    this.isPaused = true;
+
+    String message = String.format("Pausing Song of %s %s by %s",""+ this.r     eleaseYear,this.title,this.artist);
+
+      Message.send(message);
   }
 
 
