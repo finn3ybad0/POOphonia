@@ -11,7 +11,7 @@ public class Podcast extends MusicItem {
     private String topic;
 
 
-    public Podcast(int id,String title,int releaseYear,String host,  int episodeNumber,String topic){
+    public Podcast(int id,String title,int releaseYear,String host, int episodeNumber,String topic){
 
         super(id,title,releaseYear);
         this.host = host;
@@ -19,8 +19,15 @@ public class Podcast extends MusicItem {
         this.episodeNumber = episodeNumber;
     }
 
+    public Podcast (String[] parts) {
+        super(  Integer.parseInt(parts[1]), parts[2], Integer.parseInt(parts[3]));
+        this.host = parts[4];
+        this.episodeNumber =  Integer.parseInt(parts[5]);
+        this.topic = parts[6];
+    }
+
     public String getHost() {
-        return host;
+        return this.host;
     }
 
     public void setHost(String host) {
@@ -31,6 +38,10 @@ public class Podcast extends MusicItem {
         return episodeNumber;
     }
 
+    public void setEpisodeNumber(int episodeNumber) {
+        this.episodeNumber = episodeNumber;
+    }
+
     public String getTopic() {
         return topic;
     }
@@ -39,51 +50,35 @@ public class Podcast extends MusicItem {
         this.topic = topic;
     }
 
-    public void setEpisodeNumber(int episodeNumber) {
-        this.episodeNumber = episodeNumber;
-    }
+
+
+
+//        String message = String.format("Playing Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());
+//        Message.send(message);
+
+//        String message = String.format("Pausing Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());
+//        Message.send(message);
+
+//        String message = String.format("Stopping Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());
+//        Message.send(message);
 
     @Override
-    public void play(){
-
-        this.setIsPlaying(true);
-        String message = String.format("Playing Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());
-        Message.send(message);
-    }
-
-    @Override
-    public void pause(){
-        this.setIsPaused(true);
-        String message = String.format("Pausing Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());
-
-        Message.send(message);
-    }
-    @Override
-    public void stop(){
-        this.setIsPlaying(false);
-        if (this.getIsPaused()){
-            this.setIsPaused(false);
-        }
-
-        String message = String.format("Stopping Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());
-
-        Message.send(message);
-
-    }
-
-    public void toString(){
-        System.out.printf("Podcast [ID=%d, Title=%s, Release Year=%d, Host=%s, Episode=%d, Topic=%s]",getId(),getTitle(),getReleaseYear(),getHost(),getEpisodeNumber(),getTopic());
+    public String toString(){
+        return String.format("Podcast{id=%d, title='%s', releaseYear=%d, host='%s', episodeNumber=%d, topic='%s'}",getId(),getTitle(),getReleaseYear(),getHost(),getEpisodeNumber(),getTopic(),getIsPlaying(),getIsPaused());
     }
 
     @Override
     public String getInfo() {
-        return String.format("");
+        return String.format("Info : [ Host=%s, Episode Number=%d, Topic=%s]",getHost(),getEpisodeNumber(),getTopic());
     }
 
-    @Override
     public String toCSV() {
-        return String.format("%d,%s,%d,%s,%d,%s",getId(),getTitle(),getReleaseYear(),getHost(),getEpisodeNumber(),getTopic());
+        return String.format("podcast,%d,%s,%d,%s,%d,%s",getId(),getTitle(),getReleaseYear(),getHost(),getEpisodeNumber(),getTopic());
     }
+
+
+
+
 
 
 

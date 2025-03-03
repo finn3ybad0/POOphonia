@@ -21,6 +21,10 @@ public abstract class MusicItem {
     this.releaseYear = releaseYear;
   }
 
+  public MusicItem() {
+
+  }
+
   public int getId(){
     return this.id;
   }
@@ -38,7 +42,7 @@ public abstract class MusicItem {
   }
 
   public int getReleaseYear(){
-    return this.releaseYear;
+    return releaseYear;
   }
 
   public void setReleaseYear(int releaseYear) {
@@ -46,53 +50,43 @@ public abstract class MusicItem {
   }
 
   public boolean getIsPlaying(){
-    return this.isPlaying;
+    return isPlaying;
   }
 
   public void setIsPlaying(boolean playing) {
-    isPlaying = playing;
+    this.isPlaying = playing;
   }
 
   public boolean getIsPaused(){
-    return this.isPaused;
+    return isPaused;
   }
 
+
   public void setIsPaused(boolean paused) {
-    isPaused = paused;
+    this.isPaused = paused;
   }
 
 
   public void play(){
-
-    this.setIsPlaying(true);
-    String message = String.format("Playing Music Item of %d %s.",getReleaseYear(),getTitle());
-    Message.send(message);
+    setIsPlaying(true);
   }
 
   public void pause(){
-    this.setIsPaused(true);
-    String message = String.format("Pausing Music Item of %d %s.",getReleaseYear(),getTitle());
-
-    Message.send(message);
+    setIsPaused(true);
   }
   public void stop(){
-    this.setIsPlaying(false);
-    if (this.getIsPaused()){
-      this.setIsPaused(false);
+    setIsPlaying(false);
+    if (getIsPaused()){
+      setIsPaused(false);
     }
-
-    String message = String.format("Stopping Music Item of %d %s.",getReleaseYear(),getTitle());
-
-    Message.send(message);
-
   }
+  @Override
+  public String toString(){
+    return String.format("MusicItem{id=%d, title='%s', releaseYear='%s', isPlaying=%b, isPaused=%b}",this.getId(),this.getTitle(),this.getReleaseYear(),this.getIsPlaying(),this.getIsPaused());
+  };
 
-  public void toString(){};
-
-  abstract String getInfo() {
-        return null;
-    }
-  abstract String toCSV();
+  public abstract String getInfo();
+  public abstract String toCSV();
 
 
   
