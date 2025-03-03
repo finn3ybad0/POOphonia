@@ -1,4 +1,4 @@
-package models
+package models;
 
 public abstract class MusicItem {
   
@@ -12,7 +12,7 @@ public abstract class MusicItem {
 
   private boolean isPaused = false;
 
-  public MusicItem(int id,String title,int releaseYear,boolean isPlaying){
+  public MusicItem(int id,String title,int releaseYear){
     
     this.id = id;
     this.title = title;
