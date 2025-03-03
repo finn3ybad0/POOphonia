@@ -50,7 +50,9 @@ public class Podcast extends MusicItem {
         this.topic = topic;
     }
 
-
+    public String getCreator(){
+        return getHost();
+    }
 
 
 //        String message = String.format("Playing Podcast of %d %s by %s",getReleaseYear(),getTitle(),getHost());

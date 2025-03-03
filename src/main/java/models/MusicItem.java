@@ -41,6 +41,8 @@ public abstract class MusicItem {
     this.title = title;
   }
 
+  public abstract String getCreator();
+
   public int getReleaseYear(){
     return releaseYear;
   }
@@ -82,7 +84,7 @@ public abstract class MusicItem {
   }
   @Override
   public String toString(){
-    return String.format("MusicItem{id=%d, title='%s', releaseYear='%s', isPlaying=%b, isPaused=%b}",this.getId(),this.getTitle(),this.getReleaseYear(),this.getIsPlaying(),this.getIsPaused());
+    return String.format("MusicItem{id=%d, title='%s', releaseYear='%s', isPlaying=%b, isPaused=%b}",getId(),getTitle(),getReleaseYear(),getIsPlaying(),getIsPaused());
   };
 
   public abstract String getInfo();

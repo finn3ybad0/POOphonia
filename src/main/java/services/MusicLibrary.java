@@ -1,6 +1,8 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 import models.MusicItem;
 import ui.Message;
 
@@ -48,6 +50,7 @@ public class MusicLibrary{
 
     public void playItem(int id){
 
+
     }
 
     public void pauseItem(){
@@ -61,19 +64,31 @@ public class MusicLibrary{
     }
 
     public MusicItem search(int id){
-      return null;
+        for (MusicItem item : items){
+            if(item.getId()==id){
+                    return item;
+                }
+            }
+        return null;
     }
 
     public MusicItem search(String title, String artist){
+        for (MusicItem item : items){
+            if(Objects.equals(item.getCreator(), artist)){
+                if(Objects.equals(item.getTitle(), title)){
+                    return item;
+                }
+            }
+        }
         return null;
     }
 
     public void load(String file){
-
+        MusicLibraryFileHandler.loadLibrary(file);
     }
 
     public void save(String file){
-
+        MusicLibraryFileHandler.saveLibrary(items,file);
     }
 
     public void clearAllItems(){

@@ -49,31 +49,21 @@ public class Song extends MusicItem {
     this.duration = duration;
   }
 
-  @Override
-  public void play(){
-
-    this.setIsPlaying(true);
+  public String getCreator(){
+    return getArtist();
+  }
 //    String message = String.format("Playing Song of %d %s by %s",getReleaseYear(),getTitle(),getArtist());
 //    Message.send(message);
-  }
 
-  @Override
-  public void pause(){
-    this.setIsPaused(true);
+
+
 //    String message = String.format("Pausing Song of %d %s by %s",getReleaseYear(),getTitle(),getArtist());
 //    Message.send(message);
-  }
-  @Override
-  public void stop(){
-    this.setIsPlaying(false);
-    if (this.getIsPaused()){
-      this.setIsPaused(false);
-    }
 
 //    String message = String.format("Stopping Song of %d %s by %s",getReleaseYear(),getTitle(),getArtist());
 //    Message.send(message);
 
-  }
+
   @Override
   public String toString(){
     return String.format("Podcast{id=%d, title='%s', releaseYear='%s', artist='%s', genre='%s', duration=%d}",getId(),getTitle(),getReleaseYear(),getArtist(),getGenre(),getDuration(),getIsPlaying(),getIsPaused());
